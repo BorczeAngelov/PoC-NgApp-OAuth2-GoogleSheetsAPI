@@ -15,16 +15,12 @@ Feel free to clone this repository and explore the integration of these technolo
 ## TODOs
 
 - [x] Set up the Angular development environment and project structure.
+- [x] Implement the authentication service using Google OAuth 2.0.
 - [ ] Enable the Google Sheets API and obtain OAuth 2.0 credentials from the Google Cloud Console.
-- [ ] Implement the authentication service using Google OAuth 2.0.
 - [ ] Create the UI components for the text input and submission.
 - [ ] Develop the service to handle HTTP requests to the Google Sheets API.
 - [ ] Write the logic to append text messages to the Google Spreadsheet.
 - [ ] Configure the deployment process to GitHub Pages.
-- [ ] Test the application to ensure functionality and security.
-- [ ] Document the setup and usage instructions.
-- [ ] Review and refine the application based on testing feedback.
-
 
 ## Publishing Angular App on GitHub Pages
 
