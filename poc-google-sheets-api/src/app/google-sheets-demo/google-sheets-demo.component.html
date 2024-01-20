@@ -1,7 +1,23 @@
-<div>
-    Google Sheets Demo Component
-    <div class="" id="google-button"></div>
-    It works
+<div style="margin: 20px;">
+    <div id="google-button"></div>
+</div>
 
-    <div id="content">{{ content }}</div>
+<div style="margin: 20px;">
+    <label for="spreadsheetId">Spreadsheet ID:</label>
+    <input [(ngModel)]="spreadsheetId" id="spreadsheetId" placeholder="Enter Spreadsheet ID"><br>
+    <label for="range">Range:</label>
+    <input [(ngModel)]="range" id="range" placeholder="Enter Range"><br>
+</div>
+
+<div style="margin: 20px;">    
+    <button (click)="loadMessages()" style="margin-top: 10px;">Load Messages</button>
+    <div *ngFor="let message of messages">
+      <p>{{ message }}</p>
+    </div>
+    <input [(ngModel)]="newMessage" placeholder="Write a new message">
+    <button (click)="sendMessage()">Send</button>
+</div>
+
+<div style="margin: 20px;">
+    <pre>{{ jsonContent }}</pre>
 </div>

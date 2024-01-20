@@ -11,7 +11,7 @@ const client_id = '290610220266-00r76ruc9a05lgqgvjks1l92tkqu54ak.apps.googleuser
 })
 export class GoogleSigninService {
 
-  private accessTokenSubject = new BehaviorSubject<string | null>(null);
+  accessTokenSubject = new BehaviorSubject<string | null>(null);
   accessToken$ = this.accessTokenSubject.asObservable();
 
   constructor() { 
@@ -55,7 +55,7 @@ export class GoogleSigninService {
     }
   }
 
-  handleAuthenticationResponse(response: any) {
+  private handleAuthenticationResponse(response: any) {
     try {
       console.log('Received response from Google:', response);
       if (response.error) {
@@ -72,7 +72,7 @@ export class GoogleSigninService {
   requestAuthorizationToken() {
     const client = google.accounts.oauth2.initTokenClient({
       client_id: client_id,
-      scope: 'https://www.googleapis.com/auth/spreadsheets.readonly',
+      scope: 'https://www.googleapis.com/auth/spreadsheets',
       callback: (tokenResponse:any) => {
         console.log("Received Google access token:", tokenResponse);
         this.accessTokenSubject.next(tokenResponse.access_token);
