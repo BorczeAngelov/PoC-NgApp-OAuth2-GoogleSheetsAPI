@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { GoogleSigninComponent } from './google-signin/google-signin.component';
+import { GoogleSheetsDemoComponent } from './google-sheets-demo/google-sheets-demo.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, GoogleSigninComponent],
+  imports: [CommonModule, RouterOutlet, GoogleSheetsDemoComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
