@@ -19,7 +19,7 @@ export class GoogleSheetsDemoComponent implements OnInit {
   newMessage = '';
   jsonContent: any;
 
-  constructor(private http: HttpClient, private googleSigninService: GoogleSigninService) { }
+  constructor(private http: HttpClient, public googleSigninService: GoogleSigninService) { }
 
   ngOnInit(): void {
     this.googleSigninService.accessToken$.subscribe(token => {
@@ -43,11 +43,20 @@ export class GoogleSheetsDemoComponent implements OnInit {
   sendMessage() {
     const token = this.googleSigninService.accessTokenSubject.getValue();
     if (token) {
-      this.appendDataWithToken(token, [[this.newMessage]]);
+      const message = this.googleSigninService.userProfile
+        ? this.formatMessage(this.newMessage)
+        : this.newMessage;
+      this.appendDataWithToken(token, [[message]]);
       this.newMessage = '';
     } else {
       this.googleSigninService.requestAuthorizationToken();
     }
+  }
+
+  private formatMessage(message: string) {
+    const name = this.googleSigninService.userProfile.name;
+    const timestamp = new Date().toISOString();
+    return `${name} (${timestamp}): ${message}`;
   }
 
   private readDataWithToken(token: string) {

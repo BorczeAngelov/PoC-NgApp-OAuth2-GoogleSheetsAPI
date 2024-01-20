@@ -13,6 +13,7 @@ export class GoogleSigninService {
 
   accessTokenSubject = new BehaviorSubject<string | null>(null);
   accessToken$ = this.accessTokenSubject.asObservable();
+  userProfile: any = null;
 
   constructor() { 
     this.initializeGoogleSignIn();
@@ -61,7 +62,14 @@ export class GoogleSigninService {
       if (response.error) {
         console.error('Google Sign-In Error:', response.error);
       }
-      else {
+      else {        
+        const idToken = response.credential;
+        const payload = JSON.parse(atob(idToken.split('.')[1]));
+        this.userProfile = {
+          name: payload.name,
+          email: payload.email
+        };
+        console.log("handleAuthenticationResponse: userProfile:", this.userProfile);
         this.requestAuthorizationToken();
       }
     } catch (error) {

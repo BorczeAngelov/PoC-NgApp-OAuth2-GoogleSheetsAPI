@@ -2,6 +2,13 @@
     <div id="google-button"></div>
 </div>
 
+<div>
+    <p *ngIf="googleSigninService.userProfile">
+      Name: {{ googleSigninService.userProfile.name }}<br>
+      Email: {{ googleSigninService.userProfile.email }}<br>
+    </p>
+</div>
+
 <div style="margin: 20px;">
     <label for="spreadsheetId">Spreadsheet ID:</label>
     <input [(ngModel)]="spreadsheetId" id="spreadsheetId" placeholder="Enter Spreadsheet ID"><br>
