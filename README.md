@@ -49,4 +49,43 @@ Finally, you can deploy your app to GitHub Pages. The `--dir` option is used to 
 Your app should now be live on GitHub Pages. You can verify it by visiting the URL you used in the `--base-href` option.
 
 
+## Google Authentication in Angular App
 
+Follow these steps to add Google authentication to your Angular app:
+
+1. **Load the Client Library**: Add the following script between the `<head></head>` tags of your `index.html` file in your Angular project:
+```html
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+```
+
+2. **Add Initialization Code**: In the component where you want to have the "Sign in with Google" button, add this code to the `ngOnInit()` function:
+```typescript
+ngOnInit() {
+  // @ts-ignore
+  google.accounts.id.initialize({
+    client_id: "YOUR GOOGLE CLIENT ID",
+    callback: this.handleCredentialResponse.bind(this),
+    auto_select: false,
+    cancel_on_tap_outside: true,
+  });
+  // @ts-ignore
+  google.accounts.id.renderButton(
+  // @ts-ignore
+  document.getElementById("google-button"),
+    { theme: "outline", size: "large", width: "100%" }
+  );
+  // @ts-ignore
+  google.accounts.id.prompt((notification: PromptMomentNotification) => {});
+}  
+async handleCredentialResponse(response: any) {
+  // Here will be your response from Google.
+  console.log(response);
+}
+```
+Replace `"YOUR GOOGLE CLIENT ID"` with your actual Google client ID.
+
+3. **Add Button Element**: Add a `div` or `button` element to the HTML file of this component, with the same id that you mentioned in the initialization (`"google-button"`):
+```html
+<div class="" id="google-button"></div>
+```
+Now, you should have a "Sign in with Google" button in your Angular app.
